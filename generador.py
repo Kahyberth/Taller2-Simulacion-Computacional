@@ -9,10 +9,10 @@ class Generador:
         self.c = c
         self.m = m
     
-    def generadorLinealCongruente(self):
+    def generadorLinealCongruente(self, n = None):
         xn = self.x0
         dato = []
-        while True:
+        while n > 0 if n != None else True:
             xn = (self.a * xn + self.c) % self.m
             rn = xn / self.m
             if rn in dato:
@@ -20,6 +20,8 @@ class Generador:
             dato.append(rn)
             
         return dato
+
+
 
 
 
