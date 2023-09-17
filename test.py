@@ -1,6 +1,11 @@
 from generador import Generador
 from independencia import Independencia
 import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.styles import Border, Side
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.stats import norm
 
 lista = Generador(5, 106, 1283, 6075).generadorLinealCongruente()
 dato = Independencia(lista)
@@ -33,7 +38,7 @@ chiCuadrado += [None] * (max_length - len(chiCuadrado))
 
 
 d = {
-    'Intervalo': intervalo,
+    'Intervalos': intervalo,
     'Frecuencia Observada': frecuenciaObservada,
     'Frecuencia Esperada': frecuenciaEsperada,
     'Estadistico': estadistico,
@@ -46,3 +51,22 @@ df = pd.DataFrame(data=d)
 
 nombreArchivo = 'informe.xlsx'
 df.to_excel(nombreArchivo, index=False)
+
+
+# Genera datos que sigan una distribución normal
+mu = 0  # Media
+sigma = 1  # Desviación estándar
+x = np.linspace(mu - 3*sigma, mu + 3*sigma, 1000)  # Valores de x
+
+# Calcula la PDF de la distribución normal
+pdf = norm.pdf(x, mu, sigma)
+
+# Grafica la PDF
+plt.figure(figsize=(10, 6))
+plt.plot(x, pdf, color='blue', label='Distribución Normal')
+plt.xlabel('x')
+plt.ylabel('PDF')
+plt.title('Gráfico de Distribución Normal (Campana)')
+plt.legend()
+plt.grid()
+plt.show()

@@ -13,7 +13,7 @@ class Independencia:
                 ls = 0
                 li = (1 / self.intervalo) + ls
                 save.append([ls, li])
-                for i in range(1, self.intervalo + 1):
+                for i in range(1, self.intervalo):
                     #print([ls, li])
                     ls = li
                     li = (1 / self.intervalo) + ls
@@ -23,7 +23,7 @@ class Independencia:
             ls = 0
             li = (1 / self.intervalo) + ls
             save.append([ls, li])
-            for i in range(1, self.intervalo + 1):
+            for i in range(1, self.intervalo):
                 #print([ls, li])
                 ls = li
                 li = (1 / self.intervalo) + ls
