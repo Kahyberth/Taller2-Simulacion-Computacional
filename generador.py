@@ -21,6 +21,25 @@ class Generador:
             
         return dato
 
+    def generadorEstandarMinimo(self, n = None):
+        q = math.floor(self.m /self.a)
+        r = (self.m % self.a)
+        xn_1 = self.x0
+        dato = []
+        self.m = self.a * q + r
+        while True:
+            if (self.a * (xn_1 % q) - r * math.floor(xn_1 / q)) >= 0:
+                modulo = (self.a * (xn_1 % q) - r * math.floor(xn_1 / q)) % self.m
+            else:
+                modulo = (self.a * (xn_1 % q) - r * math.floor(xn_1 / q) + self.m) % self.m
+            xn_1 = modulo
+            
+            if xn_1 in dato:
+                break
+            else:
+                dato.append(xn_1)    
+        return dato
+
 
 
 
