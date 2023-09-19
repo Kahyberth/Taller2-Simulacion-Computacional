@@ -1,6 +1,8 @@
 import math
 import scipy.stats as stats
-
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import kstest
 class Independencia:
     
     def __init__(self, lista, intervalo = None):
@@ -33,10 +35,11 @@ class Independencia:
 
     def frecuenciaObservada(self):
         save = []
-        for i in self.obtenerIntervalo():
+        intervalos = self.obtenerIntervalo()
+        for i in range(0, len(intervalos)):
             contador = 0
             for j in self.lista:
-                if (j >= i[0] and j < i[1]):
+                if (j >= intervalos[i][0] and j < intervalos[i][1]):
                     contador += 1
             save.append(contador)
         return save
@@ -62,9 +65,10 @@ class Independencia:
     
     
     def frecuenciaObservadaAcumulada(self):
-        save = []
-        for i in self.frecuenciaObservada():
-            save.append(i + sum(save))
+        frecuenciaObservada = self.frecuenciaObservada()
+        save = [frecuenciaObservada[0]]
+        for i in range(1, len(frecuenciaObservada)):
+           save.append(save[i-1] + frecuenciaObservada[i])
         return save
     
     def probabilidadObservadaAcumulada(self):
@@ -75,62 +79,59 @@ class Independencia:
     
     def probabiliadEsperadaAcumulada(self):
         save = []
-        if self.intervalo is None:
-            self.intervalo =  round(math.sqrt(len(self.lista)))
-            fx = (1 / self.intervalo)
-            for i in range(1,self.intervalo):
-                save.append(fx * (i))
-        elif self.intervalo != None:
-            fx = 1 / self.intervalo
-            for i in range(self.intervalo):
-                save.append(fx * (i + 1))
-        return save
+        fx = 1 / self.intervalo  # Probabilidad de un intervalo en una distribución uniforme
+        acumulado = 0
     
+        for i in range(len(self.obtenerIntervalo())):
+            acumulado += fx
+            save.append(acumulado)
+    
+        return save
     
     def diferenciaAbsoluta(self):
         save = []
-        for i in range(len(self.probabilidadObservadaAcumulada())-1):
+        for i in range(self.intervalo):
             save.append(abs(self.probabiliadEsperadaAcumulada()[i] - self.probabilidadObservadaAcumulada()[i]))
         return save
         
     
     
     
+  
+
+
     def kolmogorov_smirnov(self):
-    # Llama a los métodos y almacena los resultados
-        self.obtenerIntervalo()
-        frecuencia_observada = self.frecuenciaObservada()
-        frecuencia_acumulada = self.frecuenciaObservadaAcumulada()
-        probabilidad_acumulada = self.probabilidadObservadaAcumulada()
+        intervalo = self.obtenerIntervalo()
+        frecuenciaObservada = self.frecuenciaObservada()
+        frecuencia_observada_acumulada = self.frecuenciaObservadaAcumulada()
+        probabilidad_observada_acumulada = self.probabilidadObservadaAcumulada()
         probabilidad_esperada_acumulada = self.probabiliadEsperadaAcumulada()
         diferencia_absoluta = self.diferenciaAbsoluta()
-
-        # Realiza la comparación
-        max_diferencia_absoluta = max(diferencia_absoluta)
-        if max_diferencia_absoluta <= (1.36 / math.sqrt(len(self.lista))):
-            print(max_diferencia_absoluta)
-            print("Se acepta la hipotesis de que los numeros son independientes")
+        maximo = max(diferencia_absoluta)
+        print("Máximo:", maximo)
+        DM_critico = 1.36 / math.sqrt(len(self.lista))
+        print("DM crítico:", DM_critico)
+        if (maximo <= DM_critico):
+            print("Se acepta la hipótesis de que los números son independientes.")
         else:
-            print(max_diferencia_absoluta)
-            print("Se rechaza la hipotesis de que los numeros son independientes")
+            print("Se rechaza la hipótesis de que los números son independientes.")
+
+
 
         
-    
     
     def chi2(self):
-        intervalos = []
-        frecuenciaObservada = []
-        frecuenciaEsperada = []
-        estadistico = []
-        sumaEstadistico = []
-        chiCuadrado = []
-        intervalos.append(self.obtenerIntervalo())
-        frecuenciaObservada.append(self.frecuenciaObservada())
-        frecuenciaEsperada.append(self.frecuenciaEsperada())
-        estadistico.append(self.estadistico())
-        sumaEstadistico.append(self.sumaEstadistico())
-        chiCuadrado.append(self.chiCuadrado())
-        
-        return [intervalos, frecuenciaObservada, frecuenciaEsperada, estadistico, sumaEstadistico, chiCuadrado]
+        intervalo = self.obtenerIntervalo()
+        frecuenciaObservada = self.frecuenciaObservada()
+        frecuenciaEsperada = self.frecuenciaEsperada()
+        estadistico = self.estadistico()
+        sumaEstadistico = self.sumaEstadistico()
+        chiCuadrado = self.chiCuadrado()
+        print("Suma de estadísticos:", sumaEstadistico)
+        print("Chi cuadrado:", chiCuadrado)
+        if (sumaEstadistico <= chiCuadrado):
+            print("Se acepta la hipótesis de que los números son independientes.")
+        else:
+            print("Se rechaza la hipótesis de que los números son independientes.")
         
         
