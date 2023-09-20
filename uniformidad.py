@@ -116,7 +116,7 @@ class Uniformidad:
         else:
             print("Se rechaza la hipótesis de que los números son Uniformes")
         
-        return intervalo, frecuenciaObservada, frecuencia_observada_acumulada, probabilidad_esperada_acumulada, probabilidad_observada_acumulada
+        return intervalo, frecuenciaObservada, frecuencia_observada_acumulada, probabilidad_esperada_acumulada, probabilidad_observada_acumulada, diferencia_absoluta
 
 
 
