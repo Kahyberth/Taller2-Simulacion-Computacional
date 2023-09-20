@@ -1,137 +1,55 @@
 import math
-import scipy.stats as stats
 import numpy as np
-import matplotlib.pyplot as plt
-from scipy.stats import kstest
 class Independencia:
     
-    def __init__(self, lista, intervalo = None):
-        self.intervalo = intervalo
-        self.lista = lista
+    def __init__(self, lst) -> None:
+        self.lst = lst
+        self.data = np.array([])
         
-    def obtenerIntervalo(self):
-        save = []
-        if (self.intervalo != None):
-                ls = 0
-                li = (1 / self.intervalo) + ls
-                save.append([ls, li])
-                for i in range(1, self.intervalo + 1):
-                    #print([ls, li])
-                    ls = li
-                    li = (1 / self.intervalo) + ls
-                    save.append([ls, li])
+    def number_of_runs(self):
+        lst = self.lst;
+        positive = ""
+        negative = ""
+        runs = np.array([])
+        current_value = lst[0]
+        for i in lst[1:]:
+            if current_value <= i:
+                positive += "+"
+                if negative != "": 
+                    runs = np.append(runs, negative)
+                    negative = ""
+                current_value = i
+            else:
+                negative += "-"
+                if positive != "":
+                    runs = np.append(runs, positive)
+                    positive = ""
+                current_value = i
+        self.data = np.append(self.data, len(runs)+1)
+        return len(runs)+1
+
+
+    def avarange(self):
+        self.data = np.append(self.data, ((2 * len(self.lst)) - 1) / 3)
+
+    def variance(self):
+        self.data = np.append(self.data, ((16 * len(self.lst)) - 29) / 90)
+    
+    def z(self):
+        if ( len(self.lst) > 20):
+            z = (self.data[0] - self.data[1]) / math.sqrt(self.data[2])
+            self.data = np.append(self.data, z)
+
+    def runs(self):
+        self.number_of_runs()
+        self.avarange()
+        self.variance()
+        self.z()
+        
+        if ( self.data[3] >= -1.96 and self.data[3] <= 1.96):
+            print("Es independiente")
+            return  self.data
         else:
-            self.intervalo =  round(math.sqrt(len(self.lista)))
-            ls = 0
-            li = (1 / self.intervalo) + ls
-            save.append([ls, li])
-            for i in range(1, self.intervalo + 1):
-                #print([ls, li])
-                ls = li
-                li = (1 / self.intervalo) + ls
-                save.append([ls, li])
-        
-        return save             
-
-    def frecuenciaObservada(self):
-        save = []
-        intervalos = self.obtenerIntervalo()
-        for i in range(0, len(intervalos)):
-            contador = 0
-            for j in self.lista:
-                if (j >= intervalos[i][0] and j < intervalos[i][1]):
-                    contador += 1
-            save.append(contador)
-        return save
-
-    def frecuenciaEsperada(self):
-        save = []
-        for i in self.frecuenciaObservada():
-            save.append(len(self.lista) / self.intervalo)
-        return save
-
-    def estadistico(self):
-        save = []
-        for i in range(len(self.frecuenciaObservada())-1):
-            save.append((self.frecuenciaEsperada()[i] - self.frecuenciaObservada()[i]) ** 2 / self.frecuenciaEsperada()[i])
-        return save
+            print("No es independiente")
+            return self.data
     
-    def sumaEstadistico(self):
-        suma = sum(self.estadistico())
-        return suma
-    
-    def chiCuadrado(self):
-        return stats.chi2.ppf((1 - 0.05), 9)
-    
-    
-    def frecuenciaObservadaAcumulada(self):
-        frecuenciaObservada = self.frecuenciaObservada()
-        save = [frecuenciaObservada[0]]
-        for i in range(1, len(frecuenciaObservada)):
-           save.append(save[i-1] + frecuenciaObservada[i])
-        return save
-    
-    def probabilidadObservadaAcumulada(self):
-        save = []
-        for i in self.frecuenciaObservadaAcumulada():
-            save.append(i / len(self.lista))
-        return save
-    
-    def probabiliadEsperadaAcumulada(self):
-        save = []
-        fx = 1 / self.intervalo  # Probabilidad de un intervalo en una distribución uniforme
-        acumulado = 0
-    
-        for i in range(len(self.obtenerIntervalo())):
-            acumulado += fx
-            save.append(acumulado)
-    
-        return save
-    
-    def diferenciaAbsoluta(self):
-        save = []
-        for i in range(self.intervalo):
-            save.append(abs(self.probabiliadEsperadaAcumulada()[i] - self.probabilidadObservadaAcumulada()[i]))
-        return save
-        
-    
-    
-    
-  
-
-
-    def kolmogorov_smirnov(self):
-        intervalo = self.obtenerIntervalo()
-        frecuenciaObservada = self.frecuenciaObservada()
-        frecuencia_observada_acumulada = self.frecuenciaObservadaAcumulada()
-        probabilidad_observada_acumulada = self.probabilidadObservadaAcumulada()
-        probabilidad_esperada_acumulada = self.probabiliadEsperadaAcumulada()
-        diferencia_absoluta = self.diferenciaAbsoluta()
-        maximo = max(diferencia_absoluta)
-        print("Máximo:", maximo)
-        DM_critico = 1.36 / math.sqrt(len(self.lista))
-        print("DM crítico:", DM_critico)
-        if (maximo <= DM_critico):
-            print("Se acepta la hipótesis de que los números son independientes.")
-        else:
-            print("Se rechaza la hipótesis de que los números son independientes.")
-
-
-
-        
-    
-    def chi2(self):
-        intervalo = self.obtenerIntervalo()
-        frecuenciaObservada = self.frecuenciaObservada()
-        frecuenciaEsperada = self.frecuenciaEsperada()
-        estadistico = self.estadistico()
-        sumaEstadistico = self.sumaEstadistico()
-        chiCuadrado = self.chiCuadrado()
-        print("Suma de estadísticos:", sumaEstadistico)
-        print("Chi cuadrado:", chiCuadrado)
-        if (sumaEstadistico <= chiCuadrado):
-            print("Se acepta la hipótesis de que los números son independientes.")
-        else:
-            print("Se rechaza la hipótesis de que los números son independientes.")
-        
-        
