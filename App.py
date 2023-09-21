@@ -33,11 +33,11 @@ class App:
         def generarExcel(e):
             if uniformidad.value == "Chi2":
                 d = {
-                    'Rango': excel[0],
-                    'FO': excel[1],
-                    'FE': excel[2],
-                    'Estadístico': excel[3],
-                    }
+                     'Rango': excel[0],
+                     'FO': excel[1],
+                     'FE': excel[2],
+                     'Estadístico': excel[3],
+                     }
                 GenerarExcel(d, "Chi2").generarExcel()
             elif uniformidad.value == "Kolmogorov":
                 d = {
@@ -57,7 +57,7 @@ class App:
         def generar(e):
             gen_numeros = resultado[0].generate()
             gen_uniformity = resultado[0].uniformity()
-            
+            gen_independence = resultado[0].independence()
             if uniformidad.value == "Chi2":
                 for i in range(len(gen_uniformity[0])):
                     cells.append(
@@ -71,11 +71,9 @@ class App:
                         )
                     )
                     
-                    excel.append(gen_uniformity[0][i])
-                    excel.append(gen_uniformity[1][i])  
-                    excel.append(gen_uniformity[2][i])
-                    excel.append(gen_uniformity[3][i])
-
+                for i in range(len(gen_uniformity[0])):
+                        for j in range(len(gen_uniformity[0])):
+                            excel[i] = gen_uniformity[i][j]
                 
         
                     
