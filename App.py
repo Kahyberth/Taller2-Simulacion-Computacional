@@ -16,8 +16,8 @@ class App:
         excel = []
         def loadData(e):
             if len(resultado) > 0 :
-                print(len(resultado))
                 resultado.pop()
+                
             if (nav.selected_index == 0):
                 try:
                     print(tx1.value, tx2.value, tx3.value, tx4.value, [generadores.value, uniformidad.value, independencia.value])
@@ -26,39 +26,42 @@ class App:
                     page.update()
                 except:
                     print("Error al cargar los datos")
+            page.update()
             resultado.append(calculo)
         
         
         
         def generarExcel(e):
-            if uniformidad.value == "Chi2":
+             if uniformidad.value == "Chi2":
                 d = {
-                     'Rango': excel[0],
-                     'FO': excel[1],
-                     'FE': excel[2],
-                     'Estadístico': excel[3],
-                     }
-                GenerarExcel(d, "Chi2").generarExcel()
-            elif uniformidad.value == "Kolmogorov":
+                    'Intervalos': excel[0],
+                    'Frecuencia Observada': excel[1],
+                    'Frecuencia Esperada': excel[2],
+                    'Estadístico': excel[3],
+                }
+                gen_excel = GenerarExcel(d, "Chi2")
+                gen_excel.generarExcel()
+                
+             elif uniformidad.value == "Kolmogorov":
                 d = {
-                    'Rango': excel[0],
+                    'Intervalos': excel[0],
                     'FO': excel[1],
                     'FOA': excel[2],
                     'POA': excel[3],
                     'PEA': excel[4],
                     '|POA-PEA|': excel[5],
-                    }
+                }
                 gen_excel = GenerarExcel(d, "Kolmogorov")
                 gen_excel.generarExcel()
+                
             
-       
-        
-        
         def generar(e):
             gen_numeros = resultado[0].generate()
             gen_uniformity = resultado[0].uniformity()
             gen_independence = resultado[0].independence()
             if uniformidad.value == "Chi2":
+                cells.clear()
+                excel.clear()
                 for i in range(len(gen_uniformity[0])):
                     cells.append(
                         ft.DataRow(
@@ -71,14 +74,15 @@ class App:
                         )
                     )
                     
-                for i in range(len(gen_uniformity[0])):
-                        for j in range(len(gen_uniformity[0])):
-                            excel[i] = gen_uniformity[i][j]
                 
+                for i in range(4):
+                    excel.append(gen_uniformity[i])
         
                     
             elif uniformidad.value == "Kolmogorov":
-                for i in range(len(gen_uniformity[0])-1):
+                cells.clear()
+                excel.clear()
+                for i in range(len(gen_uniformity[0])):
                     cells.append(
                         ft.DataRow(
                             cells=[
@@ -87,21 +91,18 @@ class App:
                                 ft.DataCell(ft.Text(str(gen_uniformity[2][i]))),
                                 ft.DataCell(ft.Text(str(gen_uniformity[3][i]))),
                                 ft.DataCell(ft.Text(str(gen_uniformity[4][i]))),
-                                ft.DataCell(ft.Text(str(gen_uniformity[5][i]))),
+                                ft.DataCell(ft.Text(str(gen_uniformity[5][i-1]))),
                             ]
                         )
                     )
                 
-                excel.append(gen_uniformity[0][i])
-                excel.append(gen_uniformity[1][i])
-                excel.append(gen_uniformity[2][i])
-                excel.append(gen_uniformity[3][i])
-                excel.append(gen_uniformity[4][i])
-                excel.append(gen_uniformity[5][i])
-            
+                for i in range(6):
+                    if i == 5:
+                        excel.append(gen_uniformity[i-1])
+                    else:
+                        excel.append(gen_uniformity[i])
             
             page.update()
-            print(gen_uniformity)
         
         def selector(e):
             if nav.selected_index == 0:
@@ -121,7 +122,7 @@ class App:
                     page.update()
                 except:
                     pass
-                
+
             elif uniformidad.value == "Kolmogorov":
                 try:
                     if len(panel_table.current.controls) > 0:
@@ -138,6 +139,7 @@ class App:
                 if page.theme_mode == ft.ThemeMode.LIGHT
                 else ft.ThemeMode.LIGHT
             )
+            c1.value = "Ligth theme"
             c1.label = (
                 "Light theme" if page.theme_mode == ft.ThemeMode.LIGHT else "Dark theme"
             )
@@ -192,15 +194,19 @@ class App:
         tx1 = ft.TextField(label="X0")
         tx1.width = 80
         tx1.height = 35
+        tx1.value = 5
         tx2 = ft.TextField(label="a")
         tx2.width = 80
         tx2.height = 35
+        tx2.value = 106
         tx3 = ft.TextField(label="c")
         tx3.width = 80
         tx3.height = 35
+        tx3.value = 1280
         tx4 = ft.TextField(label="m")
         tx4.width = 80
         tx4.height = 35
+        tx4 .value = 6075
         container2 = ft.Column(
             controls=[
                 tx1,
@@ -261,7 +267,7 @@ class App:
                 ],
                 rows= cells,
                 width=1000,
-                height=600
+                height=800
             )
 
         
