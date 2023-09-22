@@ -10,29 +10,29 @@ class App:
         pass
     
     def main(page: Page):      
-        global resultado 
-        resultado = []
+        global results
+        results = []
         cells = []
         excel = []
         def loadData(e):
-            if len(resultado) > 0 :
-                resultado.pop()
+            if len(results) > 0 :
+                results.pop()
                 
             if (nav.selected_index == 0):
                 try:
-                    print(tx1.value, tx2.value, tx3.value, tx4.value, [generadores.value, uniformidad.value, independencia.value])
-                    calculo = Calcular(int(tx1.value), int(tx2.value), int(tx3.value), int(tx4.value), [generadores.value, uniformidad.value, independencia.value])
+                    print(tx1.value, tx2.value, tx3.value, tx4.value, [generators.value, uniformity_f.value, independence.value])
+                    calculo = Calcular(int(tx1.value), int(tx2.value), int(tx3.value), int(tx4.value), [generators.value, uniformity_f.value, independence.value])
                     print("Datos cargados correctamente")
                     page.update()
                 except:
                     print("Error al cargar los datos")
             page.update()
-            resultado.append(calculo)
+            results.append(calculo)
         
         
         
-        def generarExcel(e):
-             if uniformidad.value == "Chi2":
+        def generateExcel(e):
+             if uniformity_f.value == "Chi2":
                 d = {
                     'Intervalos': excel[0],
                     'Frecuencia Observada': excel[1],
@@ -40,9 +40,9 @@ class App:
                     'Estadístico': excel[3],
                 }
                 gen_excel = GenerarExcel(d, "Chi2")
-                gen_excel.generarExcel()
+                gen_excel.generateExcel()
                 
-             elif uniformidad.value == "Kolmogorov":
+             elif uniformity_f.value == "Kolmogorov":
                 d = {
                     'Intervalos': excel[0],
                     'FO': excel[1],
@@ -52,14 +52,14 @@ class App:
                     '|POA-PEA|': excel[5],
                 }
                 gen_excel = GenerarExcel(d, "Kolmogorov")
-                gen_excel.generarExcel()
+                gen_excel.generateExcel()
                 
             
-        def generar(e):
-            gen_numeros = resultado[0].generate()
-            gen_uniformity = resultado[0].uniformity()
-            gen_independence = resultado[0].independence()
-            if uniformidad.value == "Chi2":
+        def generate(e):
+            gen_numeros = results[0].generate()
+            gen_uniformity = results[0].uniformity()
+            gen_independence = results[0].independence()
+            if uniformity_f.value == "Chi2":
                 cells.clear()
                 excel.clear()
                 for i in range(len(gen_uniformity[0])):
@@ -79,7 +79,7 @@ class App:
                     excel.append(gen_uniformity[i])
         
                     
-            elif uniformidad.value == "Kolmogorov":
+            elif uniformity_f.value == "Kolmogorov":
                 cells.clear()
                 excel.clear()
                 for i in range(len(gen_uniformity[0])):
@@ -108,13 +108,13 @@ class App:
             if nav.selected_index == 0:
                 loadData(e)
             elif nav.selected_index == 1:
-                generar(e)
+                generate(e)
             elif nav.selected_index == 2:
-                generarExcel(e)
+                generateExcel(e)
         
         
         def dropDown(e):
-            if uniformidad.value == "Chi2":
+            if uniformity_f.value == "Chi2":
                 try:
                     if len(panel_table.current.controls) > 0:
                         panel_table.current.controls.remove(kolmogorovTable)
@@ -123,7 +123,7 @@ class App:
                 except:
                     pass
 
-            elif uniformidad.value == "Kolmogorov":
+            elif uniformity_f.value == "Kolmogorov":
                 try:
                     if len(panel_table.current.controls) > 0:
                         panel_table.current.controls.remove(chi2Table)
@@ -139,7 +139,6 @@ class App:
                 if page.theme_mode == ft.ThemeMode.LIGHT
                 else ft.ThemeMode.LIGHT
             )
-            c1.value = "Ligth theme"
             c1.label = (
                 "Light theme" if page.theme_mode == ft.ThemeMode.LIGHT else "Dark theme"
             )
@@ -148,8 +147,8 @@ class App:
         
     
         c1 = ft.Switch(label="Light theme", value = True, on_change=theme_changed)
-        
-        uniformidad = ft.Dropdown(
+
+        uniformity_f = ft.Dropdown(
             on_change=dropDown,
             width=200,
             label="Tipo de Uniformidad",
@@ -160,7 +159,7 @@ class App:
         )
         
         
-        generadores = ft.Dropdown(
+        generators = ft.Dropdown(
             width=200,
             label="Tipo de generador",
             options=[
@@ -169,7 +168,7 @@ class App:
             ]
         )
         
-        independencia = ft.Dropdown(
+        independence = ft.Dropdown(
             width=200,
             label="Tipo de independencia",
             options=[
@@ -183,14 +182,14 @@ class App:
         container = ft.Column(
             controls=[
             c1,
-            uniformidad,
-            generadores,
-            independencia
+            uniformity_f,
+            generators,
+            independence
             ],
         height= 250
         )
         
-        
+        #TODO: Falta por cambiar los valores predeterminados
         tx1 = ft.TextField(label="X0")
         tx1.width = 80
         tx1.height = 35
@@ -220,7 +219,7 @@ class App:
             label_type=ft.NavigationRailLabelType.ALL,
             destinations=[
                 ft.NavigationRailDestination(
-                    icon=ft.icons.ACCESSIBILITY, selected_icon=ft.icons.DONE, label="Cargar Datos",
+                    icon=ft.icons.ACCOUNT_BOX, selected_icon=ft.icons.DONE, label="Cargar Datos",
                     
                 ),
                 ft.NavigationRailDestination(
@@ -237,13 +236,7 @@ class App:
         )
 
 
-        
-
-
-        
-        
-                
-        
+        #Chi-square table
         chi2Table =  ft.DataTable(
                 columns=[
                     ft.DataColumn(ft.Text("Intervalos")),
@@ -256,6 +249,7 @@ class App:
                 height=600
             )
         
+        #KolmogorovTable
         kolmogorovTable =  ft.DataTable(
                 columns=[
                     ft.DataColumn(ft.Text("Intervalos")),
@@ -270,12 +264,7 @@ class App:
                 height=800
             )
 
-        
-        
 
-            
-        
-        tableControl =  ft.Ref[ft.Column]()
         
         panel = ft.Column(
             controls=[
@@ -298,7 +287,7 @@ class App:
                     height=620),
                 ft.VerticalDivider(width=1),
             ],
-                height=620
+                height=630
         ))
             
     ft.app(target=main)
