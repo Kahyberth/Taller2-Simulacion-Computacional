@@ -1,7 +1,7 @@
 from generador import Generador
 from uniformidad import Uniformidad
 from independencia import Independencia
-import numpy as np
+
 
 
 class Calcular:
