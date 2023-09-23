@@ -29,7 +29,7 @@ class App:
             page.update()
             results.append(calculo)
         
-        
+        print(results)
         
         def generateExcel(e):
              if uniformity_f.value == "Chi2":
@@ -59,6 +59,7 @@ class App:
             gen_numeros = results[0].generate()
             gen_uniformity = results[0].uniformity()
             gen_independence = results[0].independence()
+
             if uniformity_f.value == "Chi2":
                 cells.clear()
                 excel.clear()
@@ -101,9 +102,13 @@ class App:
                         excel.append(gen_uniformity[i-1])
                     else:
                         excel.append(gen_uniformity[i])
+
+            
+            
             
             page.update()
-        
+
+
         def selector(e):
             if nav.selected_index == 0:
                 loadData(e)
