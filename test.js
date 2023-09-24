@@ -8,4 +8,3 @@ const pruebas = new Pruebas(datos);
 
 pruebas.chi_cuadrado();
 console.log("Periodo: ", generador.periodo());
-
