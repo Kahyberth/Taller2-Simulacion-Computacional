@@ -1,15 +1,14 @@
 import math
-import numpy as np
-from scipy.stats import chi2
+
 class Generador:
-    
+
     def __init__(self, x0, a, c, m):
         self.x0 = x0
         self.a = a
         self.c = c
         self.m = m
-    
-    def generadorLinealCongruente(self, n = None):
+
+    def generadorLinealCongruente(self, n=None):
         xn = self.x0
         dato = []
         while n > 0 if n != None else True:
@@ -18,11 +17,11 @@ class Generador:
             if rn in dato:
                 break
             dato.append(rn)
-            
+
         return dato
 
-    def generadorEstandarMinimo(self, n = None):
-        q = math.floor(self.m /self.a)
+    def generadorEstandarMinimo(self, n=None):
+        q = math.floor(self.m / self.a)
         r = (self.m % self.a)
         xn_1 = self.x0
         dato = []
@@ -33,11 +32,11 @@ class Generador:
             else:
                 modulo = (self.a * (xn_1 % q) - r * math.floor(xn_1 / q) + self.m) % self.m
             xn_1 = modulo
-            
+
             if xn_1 in dato:
                 break
             else:
-                dato.append(xn_1)    
+                dato.append(xn_1)
         return dato
 
 
