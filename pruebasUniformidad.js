@@ -15,7 +15,7 @@ export class Pruebas {
             colWidths: [10, 15, 20, 20]
         });
         const datos = this.lista;
-        const numero_clases = Math.sqrt(datos.length);
+        const numero_clases = 10;
         const gradosLibertad = numero_clases - 1;
         for (let i = 0; i < numero_clases; i++) {
             const FO = datos.filter(dato => dato >= i / numero_clases && dato < (i + 1) / numero_clases).length;
@@ -57,7 +57,7 @@ export class Pruebas {
             colWidths: [10, 15, 20, 20, 20, 20]
         })
         const datos = this.lista;
-        const numero_clases = Math.ceil(Math.sqrt(datos.length));
+        const numero_clases = 10;
         const gradosLibertad = this.lista.length;
         const kolmogorov = [];
         let FOA = 0;
