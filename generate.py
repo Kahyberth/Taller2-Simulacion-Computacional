@@ -8,7 +8,7 @@ class Generate:
         self.c = c
         self.m = m
 
-    def congruentLinearGenerator(self, n=None):
+    def congruentLinearGenerator(self, n=100):
         x = self.x0
         a = self.a
         c = self.c
