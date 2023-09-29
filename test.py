@@ -1,72 +1,23 @@
-from generador import Generador
-from independencia import Independencia
-import pandas as pd
-from openpyxl import load_workbook
-from openpyxl.styles import Border, Side
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.stats import norm
-
-lista = Generador(5, 106, 1283, 6075).generadorLinealCongruente()
-dato = Independencia(lista)
-intervalo = dato.obtenerIntervalo()
-frecuenciaObservada = dato.frecuenciaObservada()
-frecuenciaEsperada = dato.frecuenciaEsperada()
-estadistico = dato.estadistico()
-sumaEstadistico = dato.sumaEstadistico()
-chiCuadrado = dato.chiCuadrado()
-
-sumaEstadistico = [sumaEstadistico]
-chiCuadrado = [chiCuadrado]
+from generate import Generate
+from uniformity import Uniformity
+from independence import Independence
+import numpy
+prueba = Generate(5,8,1280,63)
+valores = prueba.congruentLinearGenerator(100)
+lista4 = [0.00115,0.22461,0.48433,0.09089,0.68942,
+        0.33142	,0.4653,	0.51518,	0.02395,	0.66448,
+        0.00066,	0.45972,	0.84643,	0.79442,	0.97112,
+        0.2227826,	0.88826,	0.62199,	0.00492,	0.08876,
+        0.25956,	0.79147,	0.38179,	0.73897,	0.7936,
+        0.23954,	0.68597,	0.44053,	0.01575,	0.91632,
+        0.07777,	0.29237,	0.78409,	0.90845,	0.17047,
+        0.6064,	0.78343,	0.8886,	0.31993,	0.61788,
+        0.69844,	0.81772,	0.17588,	0.7603,	0.9388,
+        0.63905,	0.52108,	0.20263,	0.31928,	0.59803
+    ]
 
 
-if sumaEstadistico <= chiCuadrado:
-      print("La muestra sigue la distribución uniforme")
-else:
-      print("La muestra no sigue la distribución uniforme")
+poker = Independence(lista4)
+poker.poker(3)
 
 
-max_length = max(len(intervalo), len(frecuenciaObservada), len(frecuenciaEsperada), len(estadistico))
-
-
-intervalo += [None] * (max_length - len(intervalo))
-frecuenciaObservada += [None] * (max_length - len(frecuenciaObservada))
-frecuenciaEsperada += [None] * (max_length - len(frecuenciaEsperada))
-estadistico += [None] * (max_length - len(estadistico))
-sumaEstadistico += [None] * (max_length - len(sumaEstadistico))
-chiCuadrado += [None] * (max_length - len(chiCuadrado))
-
-
-d = {
-    'Intervalos': intervalo,
-    'Frecuencia Observada': frecuenciaObservada,
-    'Frecuencia Esperada': frecuenciaEsperada,
-    'Estadistico': estadistico,
-    'Suma Estadistico': sumaEstadistico,
-    'Chi Cuadrado': chiCuadrado,
-}
-
-df = pd.DataFrame(data=d)
-
-
-nombreArchivo = 'informe.xlsx'
-df.to_excel(nombreArchivo, index=False)
-
-
-# Genera datos que sigan una distribución normal
-mu = 0  # Media
-sigma = 1  # Desviación estándar
-x = np.linspace(mu - 3*sigma, mu + 3*sigma, 1000)  # Valores de x
-
-# Calcula la PDF de la distribución normal
-pdf = norm.pdf(x, mu, sigma)
-
-# Grafica la PDF
-plt.figure(figsize=(10, 6))
-plt.plot(x, pdf, color='blue', label='Distribución Normal')
-plt.xlabel('x')
-plt.ylabel('PDF')
-plt.title('Gráfico de Distribución Normal (Campana)')
-plt.legend()
-plt.grid()
-plt.show()
