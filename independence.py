@@ -82,6 +82,7 @@ class Independence:
 
 
 
+    #TODO: Falta terminar el count_similarities
     def count_similarities(self, pk):
         data_list = self.list
         digits = []
