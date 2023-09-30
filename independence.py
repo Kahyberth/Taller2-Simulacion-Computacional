@@ -47,52 +47,20 @@ class Independence:
         data_list = self.list
         x = PrettyTable()
         x.field_names = ["CLASES", "FO", "FE", "(FE-FO)^2 / 2"]
-        if pk == 3:
-            all_different = 0.72 * len(data_list)
-            even = 0.27 * len(data_list)
-            third = 0.01 * len(data_list)
-            pks = self.count_similarities(3)
-            pk3 = pks.count(3)
-            pk2 = pks.count(2)
-            pk1 = len(data_list) - len(pks)
-
-
-            x.add_row(["3 CARTAS IGUALES", f"{pk3}",f"{third}", f"{math.pow((third - pk3), 2) / third}"])
-            x.add_row(["1 PAR", f"{pk2}", f"{even}", f"{math.pow((even - pk2),2) / even}"])
-            x.add_row(["TODAS DIFERENTES", f"{pk1}", f"{all_different}", f"{math.pow((all_different - pk1),2)/all_different}"])
-
-            print(x)
-        elif pk == 4:
-            all_different = 0.5040 * len(data_list)
-            even = 0.4320 * len(data_list)
-            two_even = 0.0270 * len(data_list)
-            third = 0.0360 * len(data_list)
-            poker = 0.0010 * len(data_list)
-            pks = self.count_similarities(4)
-            pk4 = pks.count(4)
-            pk3 = pks.count(3)
-            pk2 = pks.count(2)
-            pk1 = len(data_list) - len(pks)
-
-            x.add_row(["TODAS DIFERENTES", f"{pk1}", f"{all_different}", f"{math.pow((all_different - pk1),2) / all_different}"])
-            x.add_row(["1 PAR", f"{pk2}", f"{even}", f"{math.pow((even - pk2),2)/even}" ])
-            x.add_row(["2 PARES" ])
-            x.add_row(["TERCIA", ])
-            x.add_row(["POKER", ])
 
 
 
-    def count_similarities(self, pk):
+
+    def count_similarities(self):
         data_list = self.list
         digits = []
         for i in data_list:
-            digit = str(i)[2:]
-            for j in digit:
-                count = digit.count(j)
-                if count >= 2:
-                    digits.append(count)
-                    break
-        return digits
+            data = str(i)[2:]
+            for j in data:
+                if j.count(j) == 2:
+                    index =  j.index(j)
+                    j.find(j.index(j))
+
 
 
 
