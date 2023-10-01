@@ -43,6 +43,7 @@ class Independence:
 
         print(x)
 
+    #TODO: Falta terminar el poker
     def poker(self, pk):
         data_list = self.list
         x = PrettyTable()
