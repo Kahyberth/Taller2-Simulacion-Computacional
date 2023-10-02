@@ -9,10 +9,10 @@ export class Chicuadrado {
         let table = new Table({
             head: ['Clase', 'Fo', 'Fe', 'Chi-Cuadrado'],
             style: {
-                head: [], //disable colors in header cells
-                border: [], //disable colors for the border
+                head: [],
+                border: [],
             },
-            colWidths: [30, 30, 30, 30], //set the widths of each column (optional)
+            colWidths: [30, 30, 30, 30],
         });
 
         const data_list = this.lst;

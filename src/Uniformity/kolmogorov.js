@@ -10,10 +10,10 @@ export class Kolmogorov {
         let table = new Table({
             head: ['Clase', 'Fo', 'Foa', 'Poa', 'Pea', '|Pea-Poa|'],
             style: {
-                head: [], //disable colors in header cells
-                border: [], //disable colors for the border
+                head: [],
+                border: [],
             },
-            colWidths: [18, 18, 18, 18, 18, 18], //set the widths of each column (optional)
+            colWidths: [18, 18, 18, 18, 18, 18],
         });
 
         const data_list = this.lst;
