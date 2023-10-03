@@ -14,14 +14,7 @@ export class Series {
         const n_classes = Math.ceil(Math.sqrt(n_groups));
         console.log(n_groups)
         const grouped_values = this.groupValues(data_list, 2);
-        let table = new Table({
-            head: [' ','[0-0.2)', '[0.2-0.4)', '[0.4,0.6)', '[0.6,0.8)','[0.8,1)'],
-            style: {
-                head: [],
-                border: [],
-            },
-            colWidths: [15,15, 15, 15, 15,15],
-        });
+
 
         const values = [];
         for (const i of grouped_values) {
@@ -48,7 +41,6 @@ export class Series {
             coordinates.push([row,columns]);
 
         }
-
 
        this.tabulateCoordinates(coordinates);
 
