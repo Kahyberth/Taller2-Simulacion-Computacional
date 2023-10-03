@@ -29,7 +29,19 @@ export class Chicuadrado {
         }
 
         console.log(table.toString())
-
+        const x_critic = 19.92;
+        console.log("=========================");
+        console.log(`x^2_calc: ${sumChi}`);
+        console.log(`Grados de libertad ${grades}`);
+        console.log(`X^2_critic: ${x_critic}`);
+        console.log(`Número de clases: ${number_of_classes}`);
+        if ( sumChi <= x_critic ) {
+            console.log(`Se acepta la hipótesis de uniformidad`);
+        }
+        else {
+            console.log(`Se rechaza la hipótesis de uniformidad`);
+        }
+        console.log("=========================");
 
 
     }
