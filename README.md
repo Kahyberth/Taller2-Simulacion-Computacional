@@ -23,5 +23,6 @@ npm run start
 
 # Preview
 
-![image](https://github.com/Kahyberth/Taller2-Simulacion-Computacional/assets/69069500/75b23061-3db2-44e1-9d5b-39b72abb3cf0)
+![12](https://github.com/Kahyberth/Taller2-Simulacion-Computacional/assets/69069500/6c7642c4-4193-46b9-8829-abafdce1093d)
+
 
