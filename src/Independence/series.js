@@ -10,9 +10,10 @@ export class Series {
         const k = k_value;
         const data_list = this.lst;
         console.log(data_list.length);
-        const n_groups =  data_list / k;
+        const n_groups =  data_list.length / k;
         const n_classes = Math.ceil(Math.sqrt(n_groups));
-        const grouped_values = this.groupValues(data_list, n_groups);
+        console.log(n_groups)
+        const grouped_values = this.groupValues(data_list, 2);
         let table = new Table({
             head: [' ','[0-0.2)', '[0.2-0.4)', '[0.4,0.6)', '[0.6,0.8)','[0.8,1)'],
             style: {
@@ -24,13 +25,28 @@ export class Series {
 
         console.log(table.toString());
         for (const i of grouped_values) {
-            for (const iElement of i) {
-
-            }
+            const values = this.filterByRange(i);
+            this.table_values(values);
         }
 
 
     }
+
+    /**
+     * Se encarga de tabular los valores
+     * @param list
+     */
+    table_values(list) {
+     const row = list[0][1];
+     const columns = list[1][1];
+
+
+
+
+
+
+    }
+
 
     filterByRange(data_list) {
         const range = [
@@ -43,7 +59,11 @@ export class Series {
 
         const quantity = [];
         for (const rangeElement of range) {
-            quantity.push(data_list.filter(data => data >= rangeElement[0] && data < rangeElement[1]).length);
+            data_list.filter(data => {
+                if ( data >= rangeElement[0] && data < rangeElement[1]  ) {
+                    quantity.push([data , [rangeElement[0], rangeElement[1]]]);
+                }
+            });
         }
 
         return quantity;
