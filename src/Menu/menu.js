@@ -162,11 +162,11 @@ export const pokerMenu = async () => {
             message: 'Select an option',
             choices: [
                 {
-                    value: '1',
+                    value: '3',
                     name: `${'1'.rainbow} Poker 3`
                 },
                 {
-                    value: '2',
+                    value: '5',
                     name: `${'2'.rainbow} Poker 5`
                 },
             ]
