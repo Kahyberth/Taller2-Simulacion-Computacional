@@ -32,7 +32,22 @@ export class Kolmogorov {
 
         const dm_calc = kolmogorov_data.reduce((a,b) => Math.max(a,b));
         console.log(table.toString());
-    }
 
+        const dm_critic = 1.36/Math.sqrt(data_list.length)
+
+        console.log("=========================");
+        console.log(`Número de clases: ${number_of_classes}`);
+        console.log(`Grados de libertad: ${grades}`);
+        console.log(`DM_critic: ${dm_critic}`);
+        console.log(`DM_calc: ${dm_calc}`)
+        if ( dm_calc <= dm_critic ) {
+            console.log(`Se acepta la hipótesis de uniformidad`);
+        }
+        else{
+            console.log(`Se rechaza la hipótesis de uniformidad`);
+        }
+        console.log("=========================");
+
+    }
 
 }
