@@ -31,7 +31,8 @@ export class Corridas {
             table.push([avarage, varaince, counter, z_value, false]);
         }
 
-        return table.toString();
+        console.log(table.toString());
+        return z_value;
     }
 
 
