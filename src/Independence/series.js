@@ -23,11 +23,12 @@ export class Series {
             colWidths: [15,15, 15, 15, 15,15],
         });
 
-        console.log(table.toString());
+        const values = [];
         for (const i of grouped_values) {
-            const values = this.filterByRange(i);
-            this.table_values(values);
+            values.push(this.filterByRange(i));
+
         }
+        this.table_values(values);
 
 
     }
@@ -37,14 +38,53 @@ export class Series {
      * @param list
      */
     table_values(list) {
-     const row = list[0][1];
-     const columns = list[1][1];
+
+       const coordinates = [];
+
+        for (let i = 0; i < list.length; i++) {
+            const row = list[i][0][1];
+            const columns = list[i][1][1];
+
+            coordinates.push([row,columns]);
+
+        }
 
 
+       this.tabulateCoordinates(coordinates);
 
+    }
 
+    tabulateCoordinates(coordinates) {
+        const patternCount = {};
 
+        for (const pattern of coordinates) {
+            const patternString = JSON.stringify(pattern);
 
+            if (patternCount[patternString]) {
+                patternCount[patternString]++;
+            } else {
+                patternCount[patternString] = 1;
+            }
+        }
+
+        const rows = new Set(coordinates.map(pattern => JSON.stringify(pattern[0])));
+        const cols = new Set(coordinates.map(pattern => JSON.stringify(pattern[1])));
+
+        const table = new Table({
+            head: [''].concat(Array.from(cols).map(col => JSON.parse(col).join(','))), // Encabezado de columnas
+        });
+
+        for (const row of Array.from(rows)) {
+            const rowData = [JSON.parse(row).join(',')];
+            for (const col of Array.from(cols)) {
+                const patternCountKey = JSON.stringify([JSON.parse(row), JSON.parse(col)]);
+                rowData.push(patternCount[patternCountKey] || 0);
+            }
+            table.push(rowData);
+        }
+
+        console.log('Tabla de patrones y sus conteos:');
+        console.log(table.toString());
     }
 
 
