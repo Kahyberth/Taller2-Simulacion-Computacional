@@ -82,10 +82,10 @@ const main = async () => {
                         independeceValue = new Poker(numPesudoAleatorios);
                         const poker = await pokerMenu();
                         if(poker === '3'){
-                            independeceValue.poker_3();
+                            independeceValue.poker_3()
                         }
                         else if (poker === '5') {
-                            independeceValue.poker_5();
+                            independeceValue.poker_5()
                         }
                         break;
                 }
