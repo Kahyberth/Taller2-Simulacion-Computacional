@@ -1,0 +1,136 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"092dab67-28b4-4515-bcf2-1b21cc796d47\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Independence/corridas.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Independence/corridas.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 4\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2WDntMHlbXCx6grtzaEyw68zfSQ\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"last_opened_file_path\": \"C:/Users/Kahyb/OneDrive/Desktop/Taller/Taller2-Simulacion-Computacional\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Kahyb\\OneDrive\\Desktop\\Taller\\Taller2-Simulacion-Computacional\\src\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"092dab67-28b4-4515-bcf2-1b21cc796d47\" name=\"Changes\" comment=\"\" />\r\n      <created>1696276231615</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1696276231615</updated>\r\n      <workItem from=\"1696276232734\" duration=\"6801000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 83ad4dae7dd63e380116077b8eb3218faa7c7f78)
++++ b/.idea/workspace.xml	(date 1696296613091)
+@@ -7,7 +7,7 @@
+     <list default="true" id="092dab67-28b4-4515-bcf2-1b21cc796d47" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Independence/corridas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Independence/corridas.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Independence/series.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Independence/series.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -65,7 +65,7 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1696276231615</updated>
+-      <workItem from="1696276232734" duration="6801000" />
++      <workItem from="1696276232734" duration="13710000" />
+     </task>
+     <servers />
+   </component>
+Index: src/Independence/series.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Independence/series.js b/src/Independence/series.js
+--- a/src/Independence/series.js	(revision 83ad4dae7dd63e380116077b8eb3218faa7c7f78)
++++ b/src/Independence/series.js	(date 1696296578041)
+@@ -1,0 +1,63 @@
++import Table from "cli-table3";
++
++export class Series {
++    constructor(list) {
++        this.lst = list;
++    }
++
++
++    series( k_value = 2 ) {
++        const k = k_value;
++        const data_list = this.lst;
++        const n_groups =  data_list / k;
++        const n_classes = Math.ceil(Math.sqrt(n_groups));
++        const grouped_values = this.groupValues(data_list, n_groups);
++        let table = new Table({
++            head: [' ','[0-0.2)', '[0.2-0.4)', '[0.4,0.6)', '[0.6,0.8)','[0.8,1)'],
++            style: {
++                head: [],
++                border: [],
++            },
++            colWidths: [15,15, 15, 15, 15,15],
++        });
++
++        console.log(table.toString());
++        for (const i of grouped_values) {
++            for (const iElement of i) {
++
++            }
++        }
++
++
++    }
++
++    filterByRange(data_list) {
++        const range = [
++            [0,0.2],
++            [0.2,0.4],
++            [0.4,0.6],
++            [0.6,0.8],
++            [0.8,1]
++        ]
++
++        const quantity = [];
++        for (const rangeElement of range) {
++            quantity.push(data_list.filter(data => data >= rangeElement[0] && data < rangeElement[1]).length);
++        }
++
++        return quantity;
++    }
++
++
++    groupValues(data_list, quantity) {
++        const groups = [];
++        for(let i = 0; i < data_list.length; i += quantity) {
++            groups.push(data_list.slice(i, i + quantity));
++        }
++        return groups;
++    }
++
++
++
++
++}
+\ No newline at end of file
+Index: app.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Chicuadrado } from './src/Uniformity/chicuadrado.js';\r\nimport { Kolmogorov } from \"./src/Uniformity/kolmogorov.js\";\r\nimport { Corridas } from \"./src/Independence/corridas.js\";\r\nimport { LinealCongruente } from \"./src/Generator/linealcongruente.js\";\r\n\r\n\r\nconst datos = new LinealCongruente(5,106,1280,6075);\r\nconst valores = datos.linealCongruente();\r\n\r\nconst prueba = new Corridas(valores);\r\nconsole.log(prueba.corridas());\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app.js b/app.js
+--- a/app.js	(revision 83ad4dae7dd63e380116077b8eb3218faa7c7f78)
++++ b/app.js	(date 1696296437044)
+@@ -2,10 +2,21 @@
+ import { Kolmogorov } from "./src/Uniformity/kolmogorov.js";
+ import { Corridas } from "./src/Independence/corridas.js";
+ import { LinealCongruente } from "./src/Generator/linealcongruente.js";
+-
++import { Series } from "./src/Independence/series.js";
+ 
+ const datos = new LinealCongruente(5,106,1280,6075);
+ const valores = datos.linealCongruente();
++const lista4 = [0.00115,0.22461	,0.48433,0.09089,0.68942,
++    0.33142	,0.4653,	0.51518,	0.02395,	0.66448,
++    0.00066,	0.45972,	0.84643,	0.79442,	0.97112,
++    0.2227826,	0.85726,	0.62199,	0.00492,	0.08876,
++    0.25956,	0.79147,	0.38179,	0.73897,	0.7936,
++    0.23954,	0.68597,	0.44053,	0.01575,	0.91632,
++    0.07777,	0.29237,	0.78409,	0.90845,	0.17047,
++    0.6064,	0.78343,	0.8886,	0.31993,	0.61788,
++    0.69844,	0.81772,	0.17588,	0.7603,	0.9388,
++    0.63905,	0.52108,	0.20263,	0.31928,	0.59803
++]
++const prueba = new Series(lista4);
++const array = prueba.series();
+ 
+-const prueba = new Corridas(valores);
+-console.log(prueba.corridas());
